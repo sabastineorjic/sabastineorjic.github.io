@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orji Sabastine Chibeze — Data Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAFAF7;
+    --paper-line: #E4E1D8;
+    --ink: #1B2A4A;
+    --ink-soft: #4A5670;
+    --text: #22252B;
+    --amber: #D9A441;
+    --teal: #2F6F5E;
+    --card: #FFFFFF;
+    --card-border: #E4E1D8;
+  }
+
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --paper: #14171C;
+      --paper-line: #262B33;
+      --ink: #E7ECF5;
+      --ink-soft: #9AA5B8;
+      --text: #E7ECF5;
+      --amber: #E3B15C;
+      --teal: #4E9683;
+      --card: #1B1F26;
+      --card-border: #2A2F38;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #14171C;
+    --paper-line: #262B33;
+    --ink: #E7ECF5;
+    --ink-soft: #9AA5B8;
+    --text: #E7ECF5;
+    --amber: #E3B15C;
+    --teal: #4E9683;
+    --card: #1B1F26;
+    --card-border: #2A2F38;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background:
+      linear-gradient(var(--paper-line) 1px, transparent 1px) 0 0 / 100% 42px,
+      var(--paper);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--paper-line);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 28px;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .brand {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+  .brand span { color: var(--amber); }
+  nav { display: flex; gap: 26px; }
+  nav a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    text-decoration: none;
+    color: var(--ink-soft);
+    transition: color 0.15s ease;
+  }
+  nav a:hover { color: var(--ink); }
+
+  @media (max-width: 560px) {
+    nav { gap: 16px; }
+    nav a { font-size: 12px; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 76px 0 64px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  @media (max-width: 700px) {
+    .hero { grid-template-columns: 1fr; padding-top: 52px; }
+  }
+  .eyebrow-line {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--teal);
+    margin-bottom: 18px;
+  }
+  h1.name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(38px, 6vw, 56px);
+    font-weight: 600;
+    line-height: 1.05;
+    margin: 0 0 18px;
+    color: var(--ink);
+  }
+  .hero p.lede {
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin: 0 0 26px;
+  }
+  .hero-links { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 3px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    text-decoration: none;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+  }
+  .btn.solid {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  /* hero chart tile */
+  .tile {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    padding: 18px 18px 14px;
+  }
+  .tile-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .tile svg { width: 100%; height: auto; display: block; }
+
+  /* ---------- Sections ---------- */
+  section { padding: 56px 0; border-top: 1px solid var(--paper-line); }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 30px;
+  }
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--amber);
+  }
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  /* About */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+  @media (max-width: 700px) { .about-grid { grid-template-columns: 1fr; } }
+  .about-grid p { color: var(--text); margin: 0 0 14px; }
+  .fact-list { list-style: none; margin: 0; padding: 0; }
+  .fact-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--paper-line);
+    font-size: 14px;
+  }
+  .fact-list li span:first-child {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--ink-soft);
+    font-size: 12px;
+    text-transform: none;
+  }
+  .fact-list li span:last-child { color: var(--ink); font-weight: 500; text-align: right; }
+
+  /* Skills */
+  .skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 1px;
+    background: var(--paper-line);
+    border: 1px solid var(--paper-line);
+  }
+  .skill-cell {
+    background: var(--card);
+    padding: 18px;
+  }
+  .skill-cell .k {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--teal);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .skill-cell .v { font-size: 14px; color: var(--text); }
+
+  /* Projects */
+  .project {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 30px;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--paper-line);
+  }
+  .project:last-child { border-bottom: none; }
+  @media (max-width: 700px) { .project { grid-template-columns: 1fr; } }
+  .project .tile { height: 100%; }
+  .project h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .project p { margin: 0 0 14px; color: var(--text); font-size: 14.5px; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    padding: 4px 9px;
+    border: 1px solid var(--card-border);
+    border-radius: 3px;
+    color: var(--ink-soft);
+  }
+  .project-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--teal);
+    text-decoration: none;
+    border-bottom: 1px solid var(--teal);
+    padding-bottom: 1px;
+  }
+
+  /* Certifications */
+  .cert-list { list-style: none; margin: 0; padding: 0; }
+  .cert-list li {
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    gap: 16px;
+    align-items: baseline;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--paper-line);
+    font-size: 14.5px;
+  }
+  @media (max-width: 560px) {
+    .cert-list li { grid-template-columns: 1fr; gap: 4px; }
+  }
+  .cert-list .yr {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--amber);
+  }
+  .cert-list .src { color: var(--ink-soft); font-size: 13px; }
+
+  /* Footer / contact */
+  footer {
+    padding: 56px 0 70px;
+    border-top: 1px solid var(--paper-line);
+  }
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    margin-bottom: 30px;
+  }
+  .contact-item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13.5px;
+  }
+  .contact-item .k { display: block; color: var(--ink-soft); font-size: 11px; margin-bottom: 4px; }
+  .contact-item a, .contact-item span.val { color: var(--ink); text-decoration: none; }
+  footer .foot-note {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  ::selection { background: var(--amber); color: #1B2A4A; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">ORJI SABASTINE <span>/// DATA</span></div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#certifications">Certs</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none;">
+    <div>
+      <div class="eyebrow-line">// data analyst — excel · tableau · reporting</div>
+      <h1 class="name">Orji Sabastine<br>Chibeze</h1>
+      <p class="lede">I turn raw spreadsheets into decisions — cleaning messy data, building dashboards, and finding the numbers that actually matter.</p>
+      <div class="hero-links">
+        <a class="btn solid" href="#projects">View projects</a>
+        <a class="btn" href="https://github.com/sabastineorjic" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+    <div class="tile">
+      <div class="tile-label"><span>eazy_get_global_superstore.xlsx</span><span>2026</span></div>
+      <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="20" x2="300" y2="20" stroke="var(--paper-line)" stroke-width="1"/>
+        <line x1="0" y1="60" x2="300" y2="60" stroke="var(--paper-line)" stroke-width="1"/>
+        <line x1="0" y1="100" x2="300" y2="100" stroke="var(--paper-line)" stroke-width="1"/>
+        <line x1="0" y1="140" x2="300" y2="140" stroke="var(--paper-line)" stroke-width="1"/>
+        <rect x="10" y="90" width="26" height="50" fill="var(--ink)" opacity="0.85"/>
+        <rect x="46" y="60" width="26" height="80" fill="var(--ink)" opacity="0.85"/>
+        <rect x="82" y="100" width="26" height="40" fill="var(--ink)" opacity="0.85"/>
+        <rect x="118" y="40" width="26" height="100" fill="var(--amber)"/>
+        <rect x="154" y="70" width="26" height="70" fill="var(--ink)" opacity="0.85"/>
+        <rect x="190" y="30" width="26" height="110" fill="var(--ink)" opacity="0.85"/>
+        <rect x="226" y="55" width="26" height="85" fill="var(--ink)" opacity="0.85"/>
+        <rect x="262" y="20" width="26" height="120" fill="var(--teal)"/>
+        <text x="118" y="35" font-family="IBM Plex Mono" font-size="9" fill="var(--ink-soft)">peak</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-head"><span class="section-num">01</span><h2>About</h2></div>
+    <div class="about-grid">
+      <div>
+        <p>I studied Computer Engineering at Michael Okpara University of Agriculture and now work in data analysis — cleaning datasets, building PivotTable-driven reports, and putting together dashboards that tell a clear story.</p>
+        <p>Alongside my NYSC service, I run an independent research project surveying corps members on student ICT access, aligned with SDG 4, with findings proposed to NYSC leadership.</p>
+      </div>
+      <ul class="fact-list">
+        <li><span>Based in</span><span>Umuahia, Abia State, NG</span></li>
+        <li><span>Education</span><span>B.Eng, Computer Engineering</span></li>
+        <li><span>Focus</span><span>Excel · Tableau · Reporting</span></li>
+        <li><span>Status</span><span>NYSC Corps Member</span></li>
+        <li><span>Open to</span><span>Data Analyst roles</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-head"><span class="section-num">02</span><h2>Skills</h2></div>
+    <div class="skill-grid">
+      <div class="skill-cell"><span class="k">SPREADSHEETS</span><span class="v">PivotTables & PivotCharts, VLOOKUP/XLOOKUP, IFS formulas</span></div>
+      <div class="skill-cell"><span class="k">DATA PREP</span><span class="v">Data validation, date & text functions, data cleaning</span></div>
+      <div class="skill-cell"><span class="k">VISUALIZATION</span><span class="v">Tableau dashboards for business reporting</span></div>
+      <div class="skill-cell"><span class="k">ANALYSIS</span><span class="v">Sales, customer & demand analysis; structured documentation</span></div>
+      <div class="skill-cell"><span class="k">HARDWARE</span><span class="v">Computer hardware & software maintenance</span></div>
+      <div class="skill-cell"><span class="k">PLATFORMS</span><span class="v">GitHub, Coursera, Forage</span></div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-head"><span class="section-num">03</span><h2>Projects</h2></div>
+
+    <div class="project">
+      <div class="tile">
+        <div class="tile-label"><span>superstore_sales.xlsx</span><span>pivot</span></div>
+        <svg viewBox="0 0 260 140" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="130" cy="70" r="55" fill="none" stroke="var(--paper-line)" stroke-width="16"/>
+          <circle cx="130" cy="70" r="55" fill="none" stroke="var(--ink)" stroke-width="16" stroke-dasharray="180 346" stroke-linecap="butt" opacity="0.85"/>
+          <circle cx="130" cy="70" r="55" fill="none" stroke="var(--amber)" stroke-width="16" stroke-dasharray="90 346" stroke-dashoffset="-180" stroke-linecap="butt"/>
+          <circle cx="130" cy="70" r="55" fill="none" stroke="var(--teal)" stroke-width="16" stroke-dasharray="76 346" stroke-dashoffset="-270" stroke-linecap="butt"/>
+        </svg>
+      </div>
+      <div>
+        <h3>Superstore Sales Analysis</h3>
+        <p>Built a PivotTable-driven breakdown of retail sales performance across categories and regions, backed by charts and a structured project README documenting the approach.</p>
+        <div class="tag-row"><span class="tag">Excel</span><span class="tag">PivotTables</span><span class="tag">Charts</span></div>
+        <a class="project-link" href="https://github.com/sabastineorjic" target="_blank" rel="noopener">View on GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="tile">
+        <div class="tile-label"><span>uk_ecommerce.xlsx</span><span>trend</span></div>
+        <svg viewBox="0 0 260 140" xmlns="http://www.w3.org/2000/svg">
+          <polyline points="0,110 40,90 80,95 120,60 160,70 200,30 260,45" fill="none" stroke="var(--teal)" stroke-width="3"/>
+          <circle cx="200" cy="30" r="4" fill="var(--amber)"/>
+          <line x1="0" y1="130" x2="260" y2="130" stroke="var(--paper-line)" stroke-width="1"/>
+        </svg>
+      </div>
+      <div>
+        <h3>UK E-Commerce Dataset Analysis</h3>
+        <p>Applied Excel date functions to study customer purchasing behavior over time — identifying seasonal patterns and repeat-purchase trends in a large transactional dataset.</p>
+        <div class="tag-row"><span class="tag">Excel</span><span class="tag">Date Functions</span><span class="tag">Customer Behavior</span></div>
+        <a class="project-link" href="https://github.com/sabastineorjic" target="_blank" rel="noopener">View on GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="tile">
+        <div class="tile-label"><span>nigeria_sales_2026</span><span>dashboard</span></div>
+        <svg viewBox="0 0 260 140" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="14" width="110" height="50" fill="none" stroke="var(--card-border)" rx="3"/>
+          <polyline points="16,55 30,45 44,50 58,30 70,38 84,20 112,26" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="130" y="14" width="120" height="50" fill="none" stroke="var(--card-border)" rx="3"/>
+          <rect x="138" y="40" width="12" height="18" fill="var(--amber)"/>
+          <rect x="156" y="28" width="12" height="30" fill="var(--amber)"/>
+          <rect x="174" y="45" width="12" height="13" fill="var(--amber)"/>
+          <rect x="192" y="20" width="12" height="38" fill="var(--amber)"/>
+          <rect x="210" y="33" width="12" height="25" fill="var(--amber)"/>
+          <rect x="10" y="76" width="240" height="50" fill="none" stroke="var(--card-border)" rx="3"/>
+          <rect x="18" y="112" width="20" height="6" fill="var(--teal)"/>
+          <rect x="18" y="102" width="60" height="6" fill="var(--teal)" opacity="0.6"/>
+          <rect x="18" y="92" width="35" height="6" fill="var(--teal)" opacity="0.6"/>
+        </svg>
+      </div>
+      <div>
+        <h3>Eazy Get Global Super-Store — Nigeria Sales Dashboard</h3>
+        <p>Developed a multi-chart 2026 sales dashboard covering sales-rep performance, customer trends, location breakdowns, and product demand for a fictional Nigerian retail chain.</p>
+        <div class="tag-row"><span class="tag">Excel</span><span class="tag">Dashboard</span><span class="tag">Reporting</span></div>
+        <a class="project-link" href="https://github.com/sabastineorjic" target="_blank" rel="noopener">View on GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="tile">
+        <div class="tile-label"><span>deloitte_forage</span><span>simulation</span></div>
+        <svg viewBox="0 0 260 140" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="20" width="220" height="100" fill="none" stroke="var(--card-border)" rx="4"/>
+          <text x="130" y="65" font-family="Fraunces" font-size="15" fill="var(--ink)" text-anchor="middle">Deloitte.</text>
+          <line x1="45" y1="80" x2="215" y2="80" stroke="var(--paper-line)"/>
+          <text x="130" y="100" font-family="IBM Plex Mono" font-size="9" fill="var(--ink-soft)" text-anchor="middle">Certificate of Completion</text>
+        </svg>
+      </div>
+      <div>
+        <h3>Deloitte Data Analytics Job Simulation</h3>
+        <p>Completed a simulated data analytics engagement via Forage — covering data analysis and forensic technology tasks, including Tableau dashboard creation and Excel IFS-formula work.</p>
+        <div class="tag-row"><span class="tag">Tableau</span><span class="tag">Excel IFS</span><span class="tag">Forensic Tech</span></div>
+        <span class="project-link" style="color: var(--ink-soft); border-color: var(--ink-soft);">Certified August 2026</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="section-head"><span class="section-num">04</span><h2>Certifications</h2></div>
+    <ul class="cert-list">
+      <li><span class="yr">2026</span><span>Data Analytics Job Simulation — Deloitte, via Forage</span><span class="src">Certificate of Completion</span></li>
+      <li><span class="yr">—</span><span>Excel Fundamentals for Data Analysis — Macquarie University</span><span class="src">Coursera</span></li>
+      <li><span class="yr">2015</span><span>Diploma in Computer Hardware & Software Maintenance</span><span class="src">Wokkman Computer College</span></li>
+    </ul>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap" style="padding:0;">
+    <div class="section-head" style="margin-bottom:24px;"><span class="section-num">05</span><h2 id="contact">Contact</h2></div>
+    <div class="contact-row">
+      <div class="contact-item"><span class="k">EMAIL</span><a href="mailto:sabastineorjic@gmail.com">sabastineorjic@gmail.com</a></div>
+      <div class="contact-item"><span class="k">PHONE</span><span class="val">0813 858 7062</span></div>
+      <div class="contact-item"><span class="k">GITHUB</span><a href="https://github.com/sabastineorjic" target="_blank" rel="noopener">github.com/sabastineorjic</a></div>
+      <div class="contact-item"><span class="k">LOCATION</span><span class="val">Umuahia, Abia State, NG</span></div>
+    </div>
+    <div class="foot-note">Built by Orji Sabastine Chibeze — last updated 2026.</div>
+  </div>
+</footer>
+
+</body>
+</html>
